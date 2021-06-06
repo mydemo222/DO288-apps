@@ -100,7 +100,7 @@ openshift.withProject("${DEV_PROJECT}"){
 		openshift.selector("dc","${APP_NAME}").rollout()
 	def deploy = openshift.selector("dc","${APP_NAME}").related("pods")
 deploy.untiEach(1){
-return (it.object().status.phase == "Running')"}
+return (it.object().status.phase == "Running")}
 
 
 }
