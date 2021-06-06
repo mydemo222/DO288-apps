@@ -92,6 +92,7 @@ oc expose svc/${APP_NAME} -n ${DEV_PROJECT}
         }
 
         stage('Wait for deployment in DEV env') {
+steps{
             //TODO: Watch deployment until pod is in 'Running' state
 script{
 openshift.withCluster(){
@@ -102,7 +103,7 @@ openshift.withProject("${DEV_PROJECT}"){
 deploy.untiEach(1){
 return (it.object().status.phase == "Running")}
 
-
+}
 }
 
 }
