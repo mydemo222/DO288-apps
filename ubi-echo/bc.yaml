@@ -1,0 +1,99 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewApp
+  creationTimestamp: "2021-06-07T16:09:24Z"
+  labels:
+    app: echo
+    app.kubernetes.io/component: echo
+    app.kubernetes.io/instance: echo
+  managedFields:
+  - apiVersion: build.openshift.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:openshift.io/generated-by: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:app.kubernetes.io/component: {}
+          f:app.kubernetes.io/instance: {}
+      f:spec:
+        f:output:
+          f:to:
+            .: {}
+            f:kind: {}
+            f:name: {}
+        f:runPolicy: {}
+        f:source:
+          f:contextDir: {}
+          f:git:
+            .: {}
+            f:ref: {}
+            f:uri: {}
+          f:type: {}
+        f:strategy:
+          f:dockerStrategy:
+            .: {}
+            f:from:
+              .: {}
+              f:kind: {}
+              f:name: {}
+          f:type: {}
+    manager: oc
+    operation: Update
+    time: "2021-06-07T16:09:24Z"
+  - apiVersion: build.openshift.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        f:triggers: {}
+      f:status:
+        f:lastVersion: {}
+    manager: openshift-apiserver
+    operation: Update
+    time: "2021-06-07T16:09:25Z"
+  name: echo
+  namespace: mayank-ahuja-rhn-cs-docker-build
+  resourceVersion: "131635191"
+  selfLink: /apis/build.openshift.io/v1/namespaces/mayank-ahuja-rhn-cs-docker-build/buildconfigs/echo
+  uid: a912e740-22f6-4b30-a2b1-95f2abe70a50
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: echo:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    contextDir: ubi-echo
+    git:
+      ref: docker-build
+      uri: https://github.com/mydemo222/DO288-apps
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: ubi:8.0
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - github:
+      secret: JeaZ17NvxaMBY27FFNg5
+    type: GitHub
+  - generic:
+      secret: MnEQDfvPXFSTq65MqhHz
+    type: Generic
+  - type: ConfigChange
+  - imageChange:
+      lastTriggeredImageID: registry.access.redhat.com/ubi8/ubi@sha256:8275e2ad7f458e329bdc8c0e7543cff1729998fe515a281d49638246de8e39ee
+    type: ImageChange
+status:
+  lastVersion: 1
