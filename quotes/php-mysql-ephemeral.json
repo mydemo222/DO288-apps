@@ -12,6 +12,7 @@
             "template.openshift.io/provider-display-name": "Red Hat Training"
         }
     },
+    "labels": {"app":"template"},
     "message": "The following service(s) have been created in your project: ${NAME}, ${DATABASE_SERVICE_NAME}.\n",
     "objects": [
         {
@@ -118,8 +119,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "php:7.2",
-                            "namespace": "${NAMESPACE}"
+                            "name": "php:7.2"
                         }
                     },
                     "type": "Source"
@@ -308,7 +308,7 @@
                                         "value": "${DATABASE_NAME}"
                                     }
                                 ],
-                                "image": " ",
+                                "image": "mysql",
                                 "livenessProbe": {
                                     "initialDelaySeconds": 30,
                                     "tcpSocket": {
@@ -359,8 +359,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "mysql:5.7",
-                                "namespace": "${NAMESPACE}"
+                                "name": "mysql:5.7"
                             }
                         },
                         "type": "ImageChange"
@@ -439,8 +438,5 @@
             "generate": "expression",
             "from": "[a-zA-Z0-9]{16}"
         }
-    ],
-    "labels": {
-        "template": "php-mysql-ephemeral"
-    }
+    ]
 }

@@ -1,0 +1,188 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewApp
+  creationTimestamp: "2021-06-07T17:45:48Z"
+  generation: 2
+  labels:
+    app: sleep
+    app.kubernetes.io/component: sleep
+    app.kubernetes.io/instance: sleep
+  managedFields:
+  - apiVersion: apps.openshift.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:openshift.io/generated-by: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:app.kubernetes.io/component: {}
+          f:app.kubernetes.io/instance: {}
+      f:spec:
+        f:replicas: {}
+        f:selector:
+          .: {}
+          f:deploymentconfig: {}
+        f:strategy:
+          f:activeDeadlineSeconds: {}
+          f:rollingParams:
+            .: {}
+            f:intervalSeconds: {}
+            f:maxSurge: {}
+            f:maxUnavailable: {}
+            f:timeoutSeconds: {}
+            f:updatePeriodSeconds: {}
+          f:type: {}
+        f:template:
+          .: {}
+          f:metadata:
+            .: {}
+            f:annotations:
+              .: {}
+              f:openshift.io/generated-by: {}
+            f:creationTimestamp: {}
+            f:labels:
+              .: {}
+              f:deploymentconfig: {}
+          f:spec:
+            .: {}
+            f:containers:
+              .: {}
+              k:{"name":"sleep"}:
+                .: {}
+                f:imagePullPolicy: {}
+                f:name: {}
+                f:resources: {}
+                f:terminationMessagePath: {}
+                f:terminationMessagePolicy: {}
+            f:dnsPolicy: {}
+            f:restartPolicy: {}
+            f:schedulerName: {}
+            f:securityContext: {}
+            f:terminationGracePeriodSeconds: {}
+    manager: oc
+    operation: Update
+    time: "2021-06-07T17:45:48Z"
+  - apiVersion: apps.openshift.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        f:template:
+          f:spec:
+            f:containers:
+              k:{"name":"sleep"}:
+                f:image: {}
+        f:triggers: {}
+      f:status:
+        f:availableReplicas: {}
+        f:conditions:
+          .: {}
+          k:{"type":"Available"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Progressing"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+        f:details:
+          .: {}
+          f:causes: {}
+          f:message: {}
+        f:latestVersion: {}
+        f:observedGeneration: {}
+        f:readyReplicas: {}
+        f:replicas: {}
+        f:unavailableReplicas: {}
+        f:updatedReplicas: {}
+    manager: openshift-controller-manager
+    operation: Update
+    time: "2021-06-07T17:45:57Z"
+  name: sleep
+  namespace: mayank-ahuja-rhn-cs-external-registry
+  resourceVersion: "131679479"
+  selfLink: /apis/apps.openshift.io/v1/namespaces/mayank-ahuja-rhn-cs-external-registry/deploymentconfigs/sleep
+  uid: 61dc9065-70fe-4351-8727-3548bd5347c0
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    deploymentconfig: sleep
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      creationTimestamp: null
+      labels:
+        deploymentconfig: sleep
+    spec:
+      containers:
+      - image: quay.io/mayank_ahuja/ubi-sleep@sha256:3e69bdcfe66bf0a07ca3c081e5713ad1212198339ba5a5415dedcdeb7c2d5cd9
+        imagePullPolicy: IfNotPresent
+        name: sleep
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - sleep
+      from:
+        kind: ImageStreamTag
+        name: sleep:1.0
+        namespace: mayank-ahuja-rhn-cs-external-registry
+      lastTriggeredImage: quay.io/mayank_ahuja/ubi-sleep@sha256:3e69bdcfe66bf0a07ca3c081e5713ad1212198339ba5a5415dedcdeb7c2d5cd9
+    type: ImageChange
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2021-06-07T17:45:56Z"
+    lastUpdateTime: "2021-06-07T17:45:56Z"
+    message: Deployment config has minimum availability.
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2021-06-07T17:45:57Z"
+    lastUpdateTime: "2021-06-07T17:45:57Z"
+    message: replication controller "sleep-1" successfully rolled out
+    reason: NewReplicationControllerAvailable
+    status: "True"
+    type: Progressing
+  details:
+    causes:
+    - type: ConfigChange
+    message: config change
+  latestVersion: 1
+  observedGeneration: 2
+  readyReplicas: 1
+  replicas: 1
+  unavailableReplicas: 0
+  updatedReplicas: 1
